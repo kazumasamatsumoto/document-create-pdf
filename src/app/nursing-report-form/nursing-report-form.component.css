@@ -1,0 +1,619 @@
+@page {
+  size: A4;
+  margin: 2mm 5mm 5mm 5mm;
+}
+
+body {
+  font-family: serif;
+  font-size: 12px;
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-weight: normal;
+}
+
+/* テーブルセルの幅と高さ設定 */
+.cell-width-15 {
+  width: 15%;
+}
+
+.cell-width-35 {
+  width: 35%;
+}
+
+.cell-height-30 {
+  height: 30px;
+}
+
+.cell-height-60 {
+  height: 60px;
+}
+
+.cell-height-80 {
+  height: 80px;
+}
+
+.cell-height-100 {
+  height: 100px;
+}
+
+.width-350 {
+  width: 350px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 入力フィールドのスタイル */
+.input-no-border {
+  border: none;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.input-95-width {
+  width: 95%;
+}
+
+.input-70-width {
+  width: 70%;
+}
+
+.input-100-width {
+  width: 100%;
+}
+
+.input-40px {
+  width: 40px;
+  text-align: right;
+}
+
+.input-30px {
+  width: 30px;
+  text-align: right;
+}
+
+/* テキストエリアのスタイル */
+.textarea-full {
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+}
+
+/* 垂直配置 */
+.vertical-middle {
+  vertical-align: middle;
+}
+
+/* テキスト配置 */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* 要介護認定のスタイル */
+.care-level-number-style {
+  vertical-align: middle;
+  position: relative;
+  top: -5px;
+}
+
+/* マージン設定 */
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.margin-0-10px {
+  margin: 0 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-5-auto-0 {
+  margin: 5px auto 0;
+}
+
+/* フレックスボックス設定 */
+.flex-display {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* 訪問看護説明文のスタイル */
+.visit-note-style {
+  margin: 5px auto 0;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: left;
+  width: 80%;
+}
+
+/* カレンダーのスタイル */
+.calendar-border-none {
+  border: none;
+}
+
+.container {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 2mm;
+  box-sizing: border-box;
+  font-family: serif;
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1.5px solid black;
+  font-family: serif;
+  font-weight: normal;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+  position: relative;
+}
+
+/* 訪問日の説明文のボーダーを消す */
+td.visit-note {
+  border-top-width: 0 !important;
+  border-top-style: none !important;
+  border-top-color: transparent !important;
+}
+
+tr:has(td.visit-note) {
+  border-top-width: 0 !important;
+  border-top-style: none !important;
+  border-top-color: transparent !important;
+}
+
+.title {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-family: serif;
+}
+
+.center {
+  text-align: center;
+}
+
+.verticalCell {
+  vertical-align: middle;
+  text-align: center;
+  width: 30px;
+}
+
+.horizontalCell {
+  text-align: center;
+  padding: 2px;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: none;
+}
+
+.calendar td {
+  border: none;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.calendar-day {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+}
+
+.day-number {
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+  text-align: left;
+  /* 年月表示と同じフォントに */
+  font-family: serif;
+  font-weight: normal;
+}
+
+.day-circle {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+}
+
+/* カレンダーの最後の行調整（共通） */
+.calendar-month .last-row {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 78px;
+  margin-top: 2px;
+}
+
+/* 最後の行の各日のセル調整 */
+.calendar-month .last-row td {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+/* 最後の行の日付の調整 */
+.calendar-month .last-row .calendar-day {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* 最後の行の日付番号の調整 */
+.calendar-month .last-row .day-number {
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-family: serif;
+  font-weight: normal;
+}
+
+/* 最後の行の○マークの調整 */
+.calendar-month .last-row .day-circle {
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* 31日がない月の場合は非表示 */
+.hidden-day {
+  visibility: hidden;
+}
+
+.visit-note {
+  font-size: 10px;
+  line-height: 1.5;
+  border-top: none;
+}
+
+.no-border-top {
+  border-top: none !important;
+}
+
+.no-border-top td {
+  border-top: none !important;
+}
+
+tr.no-border-top {
+  border-top: none !important;
+}
+
+/* カレンダーと説明文の間の境界線を消す */
+tr.no-border-top,
+tr.no-border-top td {
+  border-top-color: transparent !important;
+  border-top-style: none !important;
+  border-top-width: 0 !important;
+}
+
+.calendar-container + tr td,
+.calendar-container + tr {
+  border-top: none !important;
+}
+
+.visit-note-container {
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 5px 0;
+  border: none;
+  background: none;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signature-line {
+  width: 300px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.stamp-position {
+  position: relative;
+  text-align: center;
+  margin-top: -40px;
+}
+
+.stamp-position-right {
+  position: relative;
+  text-align: right;
+  margin-top: -30px;
+  margin-right: 30px;
+}
+
+.stamp-text {
+  font-size: 24px;
+}
+
+.sign-date {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.sign-date .text-right {
+  margin-top: 10px;
+  margin-right: 80px;
+  text-align: right;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+/* 要介護認定の区分 */
+.care-level-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 10px 0;
+}
+
+.care-level-item {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.care-level-number {
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+}
+
+.care-level-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ボタン類 */
+.action-buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.generate-btn,
+.reset-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.generate-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.reset-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* 印刷用のスタイル調整 */
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+    font-weight: normal;
+  }
+
+  .container {
+    border: none;
+    padding: 2mm 5mm 5mm 5mm;
+    font-family: serif;
+    font-weight: normal;
+  }
+
+  .action-buttons {
+    display: none;
+  }
+}
+
+/* フォーム要素のスタイル */
+input,
+textarea,
+button,
+select {
+  font-family: serif;
+  font-weight: normal;
+}
+
+.calendar-month tr:first-child td {
+  /* 元の年月表示スタイルに合わせる */
+}
+
+.calendar-month-title {
+  /* 年月表示のみに特別なフォントを適用 */
+  font-family: serif;
+  font-weight: normal;
+}
+
+/* 署名部分のスタイル */
+.report-footer {
+  margin-top: 20px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.left-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+.date-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.date-label {
+  font-size: 16px;
+  text-align: center;
+  width: 30px;
+  margin: 0 15px;
+}
+
+.date-inputs {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-top: -40px;
+}
+
+.input-year {
+  width: 50px;
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+.input-month {
+  width: 30px;
+  font-size: 16px;
+  margin: 0 3px;
+}
+
+.input-day {
+  width: 30px;
+  font-size: 16px;
+  margin: 0 3px;
+}
+
+.right-block {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.info-label {
+  width: 100px;
+  text-align: left;
+}
+
+.info-input {
+  flex-grow: 1;
+  margin-right: 50px;
+}
+
+.stamp-circle {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp-text {
+  font-size: 20px;
+  line-height: 1;
+}

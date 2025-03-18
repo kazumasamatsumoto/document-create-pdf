@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'documet-create-pdf' title`, () => {
+  it(`should have the 'angular-course' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('documet-create-pdf');
+    expect(app.title).toEqual('angular-course');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, documet-create-pdf');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-course');
   });
 });
