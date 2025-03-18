@@ -652,6 +652,8 @@ select {
 .info-input {
   flex-grow: 1;
   margin-right: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .stamp-circle {

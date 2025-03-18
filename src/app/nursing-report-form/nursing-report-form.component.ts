@@ -25,6 +25,7 @@ interface NursingReport {
   reportYear: string;
   reportMonth: string;
   reportDay: string;
+  recipientName: string; // 宛先の名前（殿の前に表示）
   managerName: string;
 }
 
@@ -91,6 +92,7 @@ export class NursingReportFormComponent implements OnInit {
       reportYear: ['2025'],
       reportMonth: ['3'],
       reportDay: ['17'],
+      recipientName: ['医療 一郎'], // 宛先の名前（殿の前に表示）
       managerName: ['']
     });
 
