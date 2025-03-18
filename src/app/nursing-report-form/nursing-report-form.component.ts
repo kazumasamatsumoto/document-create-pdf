@@ -66,11 +66,13 @@ export class NursingReportFormComponent implements OnInit {
   }
 
   createForm(): FormGroup {
-    return this.fb.group({
+    // フォームを作成
+    const form = this.fb.group({
       patientName: ['山田 太郎', Validators.required],
       birthYear: ['1955', Validators.required],
       birthMonth: ['3', Validators.required],
       birthDay: ['15', Validators.required],
+      age: [''],
       caregiverFacility: ['東京訪問看護ステーション'],
       requireCareLevel: [5], // 要介護3
       visitDatesPrevMonth: this.createVisitDatesArray(),
@@ -91,6 +93,63 @@ export class NursingReportFormComponent implements OnInit {
       reportDay: ['17'],
       managerName: ['']
     });
+
+    // 初期年齢を計算
+    this.calculateAge(form);
+
+    // 生年月日の変更を監視して年齢を再計算
+    form.get('birthYear')?.valueChanges.subscribe(() => this.calculateAge(form));
+    form.get('birthMonth')?.valueChanges.subscribe(() => this.calculateAge(form));
+    form.get('birthDay')?.valueChanges.subscribe(() => this.calculateAge(form));
+
+    // フォームを返す
+    return form;
+  }
+
+  // 年齢を計算するメソッド
+  calculateAge(form: FormGroup): void {
+    const birthYear = form.get('birthYear')?.value;
+    const birthMonth = form.get('birthMonth')?.value;
+    const birthDay = form.get('birthDay')?.value;
+
+    if (birthYear && birthMonth && birthDay) {
+      try {
+        // 文字列を数値に変換
+        const year = parseInt(birthYear, 10);
+        const month = parseInt(birthMonth, 10) - 1; // JavaScriptの月は0から始まる
+        const day = parseInt(birthDay, 10);
+
+        // 有効な日付かどうかチェック
+        if (isNaN(year) || isNaN(month) || isNaN(day) || month < 0 || month > 11 || day < 1 || day > 31) {
+          form.get('age')?.setValue('');
+          return;
+        }
+
+        const birthDate = new Date(year, month, day);
+        const today = new Date();
+        
+        // 有効な日付かどうか再度チェック
+        if (birthDate.toString() === 'Invalid Date') {
+          form.get('age')?.setValue('');
+          return;
+        }
+        
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+        // 誕生日がまだ来ていない場合は1歳引く
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        
+        form.get('age')?.setValue(age.toString());
+      } catch (error) {
+        console.error('年齢計算エラー:', error);
+        form.get('age')?.setValue('');
+      }
+    } else {
+      form.get('age')?.setValue('');
+    }
   }
 
   createVisitDatesArray(): FormArray {
