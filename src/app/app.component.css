@@ -1,0 +1,148 @@
+/* アプリケーション全体のコンテナ */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* メインコンテンツエリア */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* アプリケーションタイトル */
+.app-title {
+  color: #2c3e50;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 24px;
+}
+
+/* ハンバーガーメニュー */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* メニュートグルチェックボックス（非表示） */
+.menu-toggle {
+  display: none;
+}
+
+/* ハンバーガーボタン */
+.menu-button {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #4caf50;
+  border-radius: 0 0 5px 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+}
+
+/* ハンバーガーアイコン */
+.menu-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+/* メニューが開いているときのアイコン変形 */
+.menu-toggle:checked + .menu-button .menu-icon {
+  background-color: transparent;
+}
+
+.menu-toggle:checked + .menu-button .menu-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle:checked + .menu-button .menu-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* メニューコンテンツ */
+.menu-content {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #2c3e50;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+/* メニューが開いているときのコンテンツ表示 */
+.menu-toggle:checked ~ .menu-content {
+  left: 0;
+}
+
+/* メニューリスト */
+.menu-list {
+  list-style: none;
+  padding: 70px 0 0 0;
+  margin: 0;
+}
+
+/* メニュー項目 */
+.menu-item {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item a:hover {
+  background-color: #34495e;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 15px;
+  }
+  
+  .app-title {
+    font-size: 20px;
+  }
+}
