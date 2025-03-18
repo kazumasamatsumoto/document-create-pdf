@@ -355,7 +355,22 @@
               class="input-no-border input-70-width"
             />
           </td>
-          <td colspan="2">職 種： 看護師・保健師</td>
+          <td colspan="2">
+            職 種： 
+            <div style="display: inline-block; position: relative; margin-right: 10px; cursor: pointer;" (click)="toggleNurseType('nurse')">
+              <span>看護師</span>
+              @if (reportForm.get('nurseType')?.value === 'nurse') {
+              <span class="nurse-type-circle"></span>
+              }
+            </div>
+            ・
+            <div style="display: inline-block; position: relative; margin-left: 10px; cursor: pointer;" (click)="toggleNurseType('health_nurse')">
+              <span>保健師</span>
+              @if (reportForm.get('nurseType')?.value === 'health_nurse') {
+              <span class="nurse-type-circle"></span>
+              }
+            </div>
+          </td>
         </tr>
       </table>
 

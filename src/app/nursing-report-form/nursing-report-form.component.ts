@@ -21,6 +21,7 @@ interface NursingReport {
   changeDetails: string;
   otherNotes: string;
   creatorName: string;
+  nurseType: string; // 看護師または保健師
   reportYear: string;
   reportMonth: string;
   reportDay: string;
@@ -84,6 +85,7 @@ export class NursingReportFormComponent implements OnInit {
       changeDetails: [''],
       otherNotes: [''],
       creatorName: ['看護 花子'],
+      nurseType: ['nurse'], // デフォルトは看護師
       reportYear: ['2025'],
       reportMonth: ['3'],
       reportDay: ['17'],
@@ -116,6 +118,10 @@ export class NursingReportFormComponent implements OnInit {
 
   toggleCareLevel(level: number): void {
     this.reportForm.get('requireCareLevel')?.setValue(level);
+  }
+
+  toggleNurseType(type: string): void {
+    this.reportForm.get('nurseType')?.setValue(type);
   }
 
   generatePDF(): void {

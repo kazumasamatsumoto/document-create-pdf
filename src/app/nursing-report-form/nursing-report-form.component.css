@@ -486,6 +486,21 @@ tr.no-border-top td {
   pointer-events: none;
 }
 
+.nurse-type-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.7;
+  pointer-events: none;
+  background: transparent;
+}
+
 /* ボタン類 */
 .action-buttons {
   margin: 10px 0;
