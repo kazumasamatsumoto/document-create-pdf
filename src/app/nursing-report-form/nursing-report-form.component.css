@@ -347,6 +347,45 @@ tr.no-border-top {
   border-top: none !important;
 }
 
+/* 下の罫線を非表示にするスタイル */
+.no-border-bottom {
+  border-bottom: none !important;
+}
+
+.no-border-bottom td {
+  border-bottom: none !important;
+}
+
+tr.no-border-bottom {
+  border-bottom: none !important;
+}
+
+/* 特定の行の下の罫線を非表示にする */
+tr.no-border-bottom + tr td {
+  border-top: none !important;
+}
+
+tr.no-border-bottom + tr {
+  border-top: none !important;
+}
+
+/* 衛生材料等の変更の必要性の行の下の罫線を非表示にする */
+table tr:has(td:contains("衛生材料等（種類・サイズ・必要量等）の変更の必要性")) {
+  border-bottom: none !important;
+}
+
+table tr:has(td:contains("衛生材料等（種類・サイズ・必要量等）の変更の必要性")) td {
+  border-bottom: none !important;
+}
+
+table tr:has(td:contains("衛生材料等（種類・サイズ・必要量等）の変更の必要性")) + tr td {
+  border-top: none !important;
+}
+
+table tr:has(td:contains("衛生材料等（種類・サイズ・必要量等）の変更の必要性")) + tr {
+  border-top: none !important;
+}
+
 /* カレンダーと説明文の間の境界線を消す */
 tr.no-border-top,
 tr.no-border-top td {

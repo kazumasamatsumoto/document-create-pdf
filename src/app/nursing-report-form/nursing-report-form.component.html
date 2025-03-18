@@ -309,25 +309,25 @@
             />）
           </td>
         </tr>
-        <tr>
-          <td colspan="3">
-            衛生材料等（種類・サイズ・必要量等）の変更の必要性：　
-            <div style="display: inline-block; position: relative; margin-right: 10px; cursor: pointer;" (click)="reportForm.get('materialChange')?.setValue(true)">
-              <span>有</span>
-              @if (reportForm.get('materialChange')?.value === true) {
-              <span class="care-level-circle">○</span>
-              }
-            </div>
-            ・
-            <div style="display: inline-block; position: relative; margin-left: 10px; cursor: pointer;" (click)="reportForm.get('materialChange')?.setValue(false)">
-              <span>無</span>
-              @if (reportForm.get('materialChange')?.value === false) {
-              <span class="care-level-circle">○</span>
-              }
-            </div>
-          </td>
-        </tr>
-        <tr>
+<tr class="no-border-bottom">
+  <td colspan="3">
+    衛生材料等（種類・サイズ・必要量等）の変更の必要性：　
+    <div style="display: inline-block; position: relative; margin-right: 10px; cursor: pointer;" (click)="reportForm.get('materialChange')?.setValue(true)">
+      <span>有</span>
+      @if (reportForm.get('materialChange')?.value === true) {
+      <span class="care-level-circle">○</span>
+      }
+    </div>
+    ・
+    <div style="display: inline-block; position: relative; margin-left: 10px; cursor: pointer;" (click)="reportForm.get('materialChange')?.setValue(false)">
+      <span>無</span>
+      @if (reportForm.get('materialChange')?.value === false) {
+      <span class="care-level-circle">○</span>
+      }
+    </div>
+  </td>
+</tr>
+        <tr class="no-border-top">
           <td colspan="3" class="cell-height-60">
             <textarea
               formControlName="changeDetails"
