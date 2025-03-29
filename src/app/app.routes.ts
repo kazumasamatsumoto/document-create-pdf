@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { NursingReportFormComponent } from './nursing-report-form/nursing-report-form.component';
 import { MentalHealthNursingReportFormComponent } from './mental-health-nursing-report-form/mental-health-nursing-report-form.component';
 import { NursingPlanFormComponent } from './nursing-plan-form/nursing-plan-form.component';
+import { CareNursingPlanFormComponent } from './care-nursing-plan-form/care-nursing-plan-form.component';
 
 export const routes: Routes = [
   // デフォルトルート - 訪問看護報告書にリダイレクト
@@ -19,8 +20,11 @@ export const routes: Routes = [
   // 医療報告書 - 今後実装予定
   { path: 'medical-report', component: NursingReportFormComponent }, // 仮に同じコンポーネントを使用
 
+  // 介護用訪問看護計画書
+  { path: 'care-nursing-plan', component: CareNursingPlanFormComponent },
+
   // 介護報告書 - 今後実装予定
-  { path: 'care-report', component: NursingReportFormComponent }, // 仮に同じコンポーネントを使用
+  { path: 'care-report', component: NursingReportFormComponent },
 
   // 設定 - 今後実装予定
   { path: 'settings', component: NursingReportFormComponent }, // 仮に同じコンポーネントを使用
