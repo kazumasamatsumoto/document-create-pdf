@@ -1,0 +1,472 @@
+<div class="container">
+  <div class="action-buttons">
+    <button type="button" class="generate-btn" (click)="onSubmit()">
+      PDF生成
+    </button>
+    <button type="button" class="reset-btn" (click)="resetForm()">
+      リセット
+    </button>
+  </div>
+
+  <form [formGroup]="reportForm">
+    <div id="mental-health-nursing-report" class="report-container">
+      <h1 class="title">精神科訪問看護報告書</h1>
+
+      <table>
+        <tr>
+          <td class="cell-width-15">ふりがな</td>
+          <td class="cell-width-35">
+            <input
+              type="text"
+              class="input-95-width input-no-border"
+            />
+          </td>
+          <td class="cell-width-15"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="cell-width-15">利用者氏名</td>
+          <td class="cell-width-35">
+            <input
+              type="text"
+              formControlName="patientName"
+              class="input-95-width input-no-border"
+            />
+          </td>
+          <td class="cell-width-15">生年月日</td>
+          <td>
+            <input
+              type="text"
+              formControlName="birthYear"
+              class="input-40px input-no-border"
+            />年
+            <input
+              type="text"
+              formControlName="birthMonth"
+              class="input-30px input-no-border"
+            />月
+            <input
+              type="text"
+              formControlName="birthDay"
+              class="input-30px input-no-border"
+            />日（ <span>{{ reportForm.get("age")?.value }}</span> ）歳
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle">要介護の状況</td>
+          <td colspan="3" class="text-center vertical-middle">
+            <div class="care-level-container">
+              <span>自立</span>
+              
+              <span class="margin-0-10px">要支援（</span>
+              @for (level of [1, 2]; track level) {
+              <div class="care-level-item" (click)="toggleCareLevel(level)">
+                <span class="care-level-number care-level-number-style">{{
+                  level
+                }}</span>
+                @if (reportForm.get('requireCareLevel')?.value === level) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+              }
+              <span>）</span>
+
+              <span class="margin-0-10px">要介護（</span>
+              @for (level of [1, 2, 3, 4, 5]; track level) {
+              <div class="care-level-item" (click)="toggleCareLevel(level + 2)">
+                <span class="care-level-number care-level-number-style">{{
+                  level
+                }}</span>
+                @if (reportForm.get('requireCareLevel')?.value === level + 2) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+              }
+              <span>）</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center vertical-middle">住所</td>
+          <td colspan="3">
+            <input type="text" class="input-full-width input-no-border" />
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" class="text-center vertical-middle">訪問日</td>
+          <td colspan="3">
+            <div class="calendar-container">
+              <table class="calendar calendar-month calendar-border-none">
+                <tr>
+                  <td colspan="7" class="center calendar-month-title">
+                    {{ prevMonthName }}
+                  </td>
+                </tr>
+                <tr>
+                  @for (day of [1, 2, 3, 4, 5, 6, 7]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Prev')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Prev')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Prev")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [8, 9, 10, 11, 12, 13, 14]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Prev')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Prev')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Prev")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [15, 16, 17, 18, 19, 20, 21]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Prev')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Prev')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Prev")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [22, 23, 24, 25, 26, 27, 28]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Prev')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Prev')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Prev")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr class="last-row">
+                  @for (day of [29, 30, 31]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Prev')"
+                    class="calendar-day"
+                    [class.hidden-day]="day > getDaysInMonth(prevMonth)"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Prev')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Prev")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+              </table>
+              <table class="calendar calendar-month calendar-border-none">
+                <tr>
+                  <td colspan="7" class="center calendar-month-title">
+                    {{ currentMonthName }}
+                  </td>
+                </tr>
+                <tr>
+                  @for (day of [1, 2, 3, 4, 5, 6, 7]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Current')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Current')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Current")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [8, 9, 10, 11, 12, 13, 14]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Current')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Current')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Current")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [15, 16, 17, 18, 19, 20, 21]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Current')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Current')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Current")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr>
+                  @for (day of [22, 23, 24, 25, 26, 27, 28]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Current')"
+                    class="calendar-day"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Current')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Current")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+                <tr class="last-row">
+                  @for (day of [29, 30, 31]; track day) {
+                  <td
+                    (click)="toggleVisitDate(day - 1, 'Current')"
+                    class="calendar-day"
+                    [class.hidden-day]="day > getDaysInMonth(currentMonth)"
+                  >
+                    <span class="day-number">{{ day }}</span>
+                    @if (getVisitDatesArray('Current')[day-1] > 0) {
+                    <span class="day-circle">{{
+                      getVisitMark(getVisitDatesArray("Current")[day - 1])
+                    }}</span>
+                    }
+                  </td>
+                  }
+                </tr>
+              </table>
+            </div>
+            <div class="visit-note visit-note-style">
+              保健師、看護師又は准看護師による訪問日を○で、作業療法士による訪問日を◎で囲む<br />
+              こと。精神科特別訪問看護指示書に基づく訪問看護を実施した日を△で囲むこ<br />
+              と。1日に2回以上訪問した日を◎で、長時間精神科訪問看護加算を算定した日を○で<br />
+              囲むこと。30分未満の訪問看護を実施した日に✓印をつけること。<br />
+              なお、右表は訪問日が2月にわたる場合使用すること。
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle cell-height-100">病状の経過</td>
+          <td colspan="3" class="cell-height-100">
+            <textarea
+              formControlName="specialNotes"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle cell-height-100">看護の内容</td>
+          <td colspan="3" class="cell-height-100">
+            <textarea
+              formControlName="nursingContent"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle cell-height-80">
+            家族等との関係
+          </td>
+          <td colspan="3" class="cell-height-80">
+            <textarea
+              formControlName="familyCooperation"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="3" class="vertical-middle">
+            衛生材料等の使<br />用量および使用<br />状況
+          </td>
+          <td colspan="3">
+            衛生材料等の名称：<input
+              type="text"
+              formControlName="materialName"
+              class="input-no-border input-70-width"
+            /><br />
+            使用料及び交換頻度：<input
+              type="text"
+              formControlName="usagePurpose"
+              class="input-no-border input-70-width"
+            /><br />
+            使用量：<input
+              type="text"
+              formControlName="usageAmount"
+              class="input-no-border input-70-width"
+            />
+          </td>
+        </tr>
+        <tr class="no-border-bottom">
+          <td colspan="3">
+            衛生材料等（種類・サイズ・必要量など）の変更の必要性：あり・
+            <div
+              style="
+                display: inline-block;
+                position: relative;
+                margin-right: 10px;
+                cursor: pointer;
+              "
+              (click)="reportForm.get('materialChange')?.setValue(true)"
+            >
+              <span>あり</span>
+              @if (reportForm.get('materialChange')?.value === true) {
+              <span class="care-level-circle">○</span>
+              }
+            </div>
+            ・
+            <div
+              style="
+                display: inline-block;
+                position: relative;
+                margin-left: 10px;
+                cursor: pointer;
+              "
+              (click)="reportForm.get('materialChange')?.setValue(false)"
+            >
+              <span>なし</span>
+              @if (reportForm.get('materialChange')?.value === false) {
+              <span class="care-level-circle">○</span>
+              }
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="cell-height-60">
+            変更内容：<textarea
+              formControlName="changeDetails"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="2" class="vertical-middle">
+            情報提供
+          </td>
+          <td colspan="3" class="cell-height-30">
+            訪問看護情報提供療養費に係る情報提供先：
+            <input
+              type="text"
+              class="input-70-width input-no-border"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="cell-height-30">
+            情報提供日：
+            <input
+              type="text"
+              class="input-40px input-no-border"
+            />年
+            <input
+              type="text"
+              class="input-30px input-no-border"
+            />月
+            <input
+              type="text"
+              class="input-30px input-no-border"
+            />日
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle cell-height-80">特記すべき事項</td>
+          <td colspan="3" class="cell-height-80">
+            （頻回に訪問看護が必要な場合を含む）
+            <textarea
+              formControlName="otherNotes"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        上記のとおり、指定訪問看護の実施について報告いたします。
+      </div>
+
+      <div class="report-footer">
+        <div class="footer-row">
+          <div class="left-block">
+            <div class="date-inputs">
+              <input
+                type="text"
+                formControlName="reportYear"
+                class="input-year input-no-border text-center"
+              />年
+              <input
+                type="text"
+                formControlName="reportMonth"
+                class="input-month input-no-border text-center"
+              />月
+              <input
+                type="text"
+                formControlName="reportDay"
+                class="input-day input-no-border text-center"
+              />日
+            </div>
+            <div class="info-input">
+              <input
+                type="text"
+                formControlName="recipientName"
+                class="input-no-border input-100-width"
+              />
+              <span>殿</span>
+            </div>
+          </div>
+
+          <div class="right-block">
+            <div class="info-row">
+              <div class="info-label">事業所名</div>
+              <div class="info-input">
+                <input
+                  type="text"
+                  formControlName="caregiverFacility"
+                  class="input-no-border input-100-width"
+                />
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">管理者氏名</div>
+              <div class="info-input">
+                <input
+                  type="text"
+                  formControlName="managerName"
+                  class="input-no-border input-100-width"
+                />
+              </div>
+              <div class="stamp-circle">
+                <div class="stamp-text">印</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -79,7 +79,7 @@ body {
 /* テキストエリアのスタイル */
 .textarea-full {
   width: 100%;
-  height: calc(100% - 10px); /* 罫線の内側に収まるよう高さを調整 */
+  height: 70%; /* 罫線の内側に収まるよう高さを調整 */
   border: none;
   resize: none;
   box-sizing: border-box;
@@ -390,6 +390,23 @@ table tr:has(td:contains("衛生材料等（種類・サイズ・必要量等）
   border-top: none !important;
 }
 */
+
+/* 情報提供の行の罫線が途切れないようにする */
+table tr:has(td:contains("情報提供")) {
+  border-bottom: 1.5px solid black !important;
+}
+
+table tr:has(td:contains("情報提供")) td {
+  border-bottom: 1.5px solid black !important;
+}
+
+table tr:has(td:contains("情報提供")) + tr td {
+  border-top: 1.5px solid black !important;
+}
+
+table tr:has(td:contains("情報提供")) + tr {
+  border-top: 1.5px solid black !important;
+}
 
 /* カレンダーと説明文の間の境界線を消す */
 tr.no-border-top,

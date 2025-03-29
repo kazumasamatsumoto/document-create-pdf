@@ -1,16 +1,29 @@
 <div class="app-container">
   <!-- ハンバーガーメニュー -->
   <div class="hamburger-menu">
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
     <label for="menu-toggle" class="menu-button">
       <span class="menu-icon"></span>
     </label>
     <div class="menu-content">
       <ul class="menu-list">
-        <li class="menu-item"><a href="#" (click)="navigateTo('nursing-report')">訪問看護報告書</a></li>
-        <li class="menu-item"><a href="#" (click)="navigateTo('medical-report')">現在開発中</a></li>
-        <li class="menu-item"><a href="#" (click)="navigateTo('care-report')">現在開発中</a></li>
-        <li class="menu-item"><a href="#" (click)="navigateTo('settings')">設定（現在開発中）</a></li>
+        <li class="menu-item">
+          <a (click)="navigateTo('nursing-report'); $event.preventDefault()">訪問看護報告書</a>
+        </li>
+        <li class="menu-item">
+          <a (click)="navigateTo('mental-health-nursing-report'); $event.preventDefault()"
+            >精神科訪問看護報告書</a
+          >
+        </li>
+        <li class="menu-item">
+          <a (click)="navigateTo('medical-report'); $event.preventDefault()">現在開発中</a>
+        </li>
+        <li class="menu-item">
+          <a (click)="navigateTo('care-report'); $event.preventDefault()">現在開発中</a>
+        </li>
+        <li class="menu-item">
+          <a (click)="navigateTo('settings'); $event.preventDefault()">設定（現在開発中）</a>
+        </li>
       </ul>
     </div>
   </div>
