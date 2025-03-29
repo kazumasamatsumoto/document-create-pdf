@@ -1,0 +1,398 @@
+@page {
+  size: A4;
+  margin: 2mm 5mm 5mm 5mm;
+}
+
+body {
+  font-family: serif;
+  font-size: 12px;
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-weight: normal;
+}
+
+/* テーブルセルの幅と高さ設定 */
+.cell-width-15 {
+  width: 15%;
+}
+
+.cell-width-35 {
+  width: 35%;
+}
+
+.cell-height-30 {
+  height: 30px;
+}
+
+.cell-height-60 {
+  height: 60px;
+}
+
+.cell-height-80 {
+  height: 80px;
+}
+
+.cell-height-100 {
+  height: 100px;
+}
+
+.cell-height-150 {
+  height: 150px;
+}
+
+.cell-height-200 {
+  height: 200px;
+}
+
+.width-350 {
+  width: 350px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 入力フィールドのスタイル */
+.input-no-border {
+  border: none;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.input-95-width {
+  width: 95%;
+}
+
+.input-70-width {
+  width: 70%;
+}
+
+.input-100-width {
+  width: 100%;
+}
+
+.input-40px {
+  width: 40px;
+  text-align: right;
+}
+
+.input-30px {
+  width: 30px;
+  text-align: right;
+}
+
+/* テキストエリアのスタイル */
+.textarea-full {
+  width: 100%;
+  height: calc(100% - 10px); /* 罫線の内側に収まるよう高さを調整 */
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  margin: 5px 0;
+  padding: 5px;
+}
+
+/* 垂直配置 */
+.vertical-middle {
+  vertical-align: middle;
+}
+
+/* テキスト配置 */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* 要介護認定のスタイル */
+.care-level-number-style {
+  vertical-align: middle;
+  position: relative;
+  top: -5px;
+}
+
+/* マージン設定 */
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.margin-0-10px {
+  margin: 0 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-5-auto-0 {
+  margin: 5px auto 0;
+}
+
+/* フレックスボックス設定 */
+.flex-display {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.container {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 2mm;
+  box-sizing: border-box;
+  font-family: serif;
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1.5px solid black;
+  font-family: serif;
+  font-weight: normal;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-family: serif;
+}
+
+.center {
+  text-align: center;
+}
+
+.label-small {
+  font-size: 10px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* 要介護認定の区分 */
+.care-level-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 10px 0;
+}
+
+.care-level-item {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.care-level-number {
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+}
+
+.care-level-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.signature-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ボタン類 */
+.action-buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.generate-btn,
+.reset-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.generate-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.reset-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* 署名部分のスタイル */
+.report-footer {
+  margin-top: 20px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.left-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+.date-inputs {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-top: 0;
+}
+
+.input-year {
+  width: 50px;
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+.input-month {
+  width: 30px;
+  font-size: 16px;
+  margin: 0 3px;
+}
+
+.input-day {
+  width: 30px;
+  font-size: 16px;
+  margin: 0 3px;
+}
+
+.recipient-section {
+  margin-top: 20px;
+}
+
+.right-block {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.info-label {
+  width: 100px;
+  text-align: left;
+}
+
+.info-input {
+  flex-grow: 1;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.stamp-circle {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp-text {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* 印刷用のスタイル調整 */
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+    font-weight: normal;
+  }
+
+  .container {
+    border: none;
+    padding: 2mm 5mm 5mm 5mm;
+    font-family: serif;
+    font-weight: normal;
+  }
+
+  .action-buttons {
+    display: none;
+  }
+}
+
+/* フォーム要素のスタイル */
+input,
+textarea,
+button,
+select {
+  font-family: serif;
+  font-weight: normal;
+}
+
+.report-container {
+  max-width: 100%;
+  margin: 0 auto;
+}

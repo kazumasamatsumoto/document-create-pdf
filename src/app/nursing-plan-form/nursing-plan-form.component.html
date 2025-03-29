@@ -1,0 +1,269 @@
+<div class="container">
+  <div class="action-buttons">
+    <button type="button" class="generate-btn" (click)="onSubmit()">
+      PDF生成
+    </button>
+    <button type="button" class="reset-btn" (click)="resetForm()">
+      リセット
+    </button>
+  </div>
+
+  <form [formGroup]="planForm">
+    <div id="nursing-plan" class="report-container">
+      <h1 class="title">訪問看護計画書</h1>
+
+      <table>
+        <tr>
+          <td class="cell-width-15">
+            <div class="label-small">(ふりがな)</div>
+            患者氏名
+          </td>
+          <td class="cell-width-35">
+            <input
+              type="text"
+              formControlName="patientName"
+              class="input-95-width input-no-border"
+            />
+          </td>
+          <td class="cell-width-15">生年月日</td>
+          <td>
+            <input
+              type="text"
+              formControlName="birthYear"
+              class="input-40px input-no-border"
+            />年
+            <input
+              type="text"
+              formControlName="birthMonth"
+              class="input-30px input-no-border"
+            />月
+            <input
+              type="text"
+              formControlName="birthDay"
+              class="input-30px input-no-border"
+            />日（ <span>{{ planForm.get("age")?.value }}</span>  歳）
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle">要介護認定<br />の状況</td>
+          <td colspan="3" class="text-center vertical-middle">
+            <div class="care-level-container">
+              <span>自立</span>
+              <span class="margin-0-10px">要支援（</span>
+              @for (level of [1, 2]; track level) {
+              <div class="care-level-item" (click)="toggleCareLevel(level)">
+                <span class="care-level-number care-level-number-style">{{
+                  level
+                }}</span>
+                @if (planForm.get('requireCareLevel')?.value === level) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+              }
+              <span>）</span>
+
+              <span class="margin-0-10px">要介護（</span>
+              @for (level of [1, 2, 3, 4, 5]; track level) {
+              <div class="care-level-item" (click)="toggleCareLevel(level + 2)">
+                <span class="care-level-number care-level-number-style">{{
+                  level
+                }}</span>
+                @if (planForm.get('requireCareLevel')?.value === level + 2) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+              }
+              <span>）</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center vertical-middle">住所</td>
+          <td colspan="3">
+            <input 
+              type="text" 
+              formControlName="address"
+              class="input-full-width input-no-border" 
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center vertical-middle">看護・リハビリテーションの目標</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="cell-height-80">
+            <textarea
+              formControlName="nursingGoal"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center vertical-middle">年　月　日</td>
+          <td class="text-center vertical-middle" colspan="2">状況上の課題・支援内容</td>
+          <td class="text-center vertical-middle">評価</td>
+        </tr>
+        <tr>
+          <td class="vertical-middle text-center">
+            <!-- 日付欄 -->
+          </td>
+          <td colspan="2" class="cell-height-200">
+            <textarea
+              formControlName="situation"
+              class="textarea-full"
+            ></textarea>
+          </td>
+          <td class="cell-height-200">
+            <textarea
+              formControlName="evaluation"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center vertical-middle">
+            衛生材料等が必要な処置の有無
+            <span class="margin-0-10px">
+              <span>有</span>
+              <div
+                style="
+                  display: inline-block;
+                  position: relative;
+                  margin-right: 10px;
+                  cursor: pointer;
+                "
+                (click)="toggleMaterialsAvailability(true)"
+              >
+                @if (planForm.get('hasMaterials')?.value === true) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+              <span>無</span>
+              <div
+                style="
+                  display: inline-block;
+                  position: relative;
+                  margin-left: 10px;
+                  cursor: pointer;
+                "
+                (click)="toggleMaterialsAvailability(false)"
+              >
+                @if (planForm.get('hasMaterials')?.value === false) {
+                <span class="care-level-circle">○</span>
+                }
+              </div>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle text-center">処置の内容</td>
+          <td colspan="2">
+            <textarea
+              formControlName="materialDetails"
+              class="textarea-full"
+            ></textarea>
+          </td>
+          <td class="text-center vertical-middle">必要量</td>
+        </tr>
+        <tr>
+          <td class="vertical-middle text-center">衛生材料（種類・サイズ）等</td>
+          <td colspan="2">
+            <textarea
+              formControlName="materialName"
+              class="textarea-full"
+            ></textarea>
+          </td>
+          <td>
+            <textarea
+              formControlName="materialQuantity"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center vertical-middle">訪問予定の概要（翌月又は理学療法士等による訪問が予定されている場合に記載）</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="cell-height-60">
+            <textarea
+              formControlName="visitSchedule"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="vertical-middle text-center">備考</td>
+          <td colspan="3" class="cell-height-60">
+            <textarea
+              formControlName="remarks"
+              class="textarea-full"
+            ></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <div class="signature-text">
+        上記の訪問看護計画書に基づき指定訪問看護又は、看護サービスの提供を実施いたします。
+      </div>
+
+      <div class="report-footer">
+        <div class="footer-row">
+          <div class="left-block">
+            <div class="date-inputs">
+              令和
+              <input
+                type="text"
+                formControlName="reportYear"
+                class="input-year input-no-border text-center"
+              />年
+              <input
+                type="text"
+                formControlName="reportMonth"
+                class="input-month input-no-border text-center"
+              />月
+              <input
+                type="text"
+                formControlName="reportDay"
+                class="input-day input-no-border text-center"
+              />日
+            </div>
+            <div class="info-input recipient-section">
+              <input
+                type="text"
+                formControlName="recipientName"
+                class="input-no-border input-100-width"
+              />
+              <span>様</span>
+            </div>
+          </div>
+
+          <div class="right-block">
+            <div class="info-row">
+              <div class="info-label">事業所名</div>
+              <div class="info-input">
+                <input
+                  type="text"
+                  formControlName="officeName"
+                  class="input-no-border input-100-width"
+                />
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">管理者氏名</div>
+              <div class="info-input">
+                <input
+                  type="text"
+                  formControlName="managerName"
+                  class="input-no-border input-100-width"
+                />
+              </div>
+              <div class="stamp-circle">
+                <div class="stamp-text">㊞</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
